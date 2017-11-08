@@ -87,6 +87,8 @@ def getmodel(num_classes,model,train_dl,valid_dl,num_epochs=10):
     if use_gpu:
         model = model.cuda()
 
+    torch.save(model,'models/model_rnd.pth')
+
     criterion = torch.nn.CrossEntropyLoss()
     optimizer = torch.optim.SGD(model.fc.parameters(), lr=0.0001, momentum=0.9)
     exp_lr_scheduler = lr_scheduler.StepLR(optimizer, step_size=7, gamma=0.1)
